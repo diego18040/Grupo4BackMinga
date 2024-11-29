@@ -33,6 +33,49 @@ const users = [
         role: 3,
         online: false
     },
+    {
+        email: "Edison.lector@ejemplo.com",
+        password: "contraseña123",
+        photo: "https://randomuser.me/api/portraits/men/4.jpg",
+        role: 3,
+        online: false
+    },
+    {
+        email: "Charles.lector@ejemplo.com",
+        password: "contraseña123",
+        photo: "https://randomuser.me/api/portraits/men/6.jpg",
+        role: 0,
+        online: false
+    },
+    {
+        email: "Michael.lector@ejemplo.com",
+        password: "contraseña123",
+        photo: "https://randomuser.me/api/portraits/men/7.jpg",
+        role: 0,
+        online: false
+    },
+    {
+        email: "Elena.lector@ejemplo.com",
+        password: "contraseña123",
+        photo: "https://randomuser.me/api/portraits/women/2.jpg",
+        role: 0,
+        online: false
+    },
+    {
+        email: "Michelle.lector@ejemplo.com",
+        password: "contraseña123",
+        photo: "https://randomuser.me/api/portraits/women/5.jpg",
+        role: 0,
+        online: false
+    },
+    {
+        email: "Augustine.lector@ejemplo.com",
+        password: "contraseña123",
+        photo: "https://randomuser.me/api/portraits/men/6.jpg",
+        role: 0,
+        online: false
+    },
+    
     
 ]
 
