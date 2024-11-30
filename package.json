@@ -19,12 +19,19 @@
   "name": "grupo4backminga",
   "version": "1.0.0",
   "description": "Grupo 4 Back End",
-  "main": "index.js",
+  "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "nodemon index.js",
-    "dataUser": "node ./models/data/users.js"
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "dataUser": "node ./models/data/users.js",
+    "dataAuthor": "node ./models/data/authors.js",
+    "dataCategory": "node ./models/data/categories.js",
+    "dataChapter": "node ./models/data/chapters.js",
+    "dataComment": "node ./models/data/comments.js",
+    "dataCompany": "node ./models/data/companies.js",
+    "dataManga": "node ./models/data/mangas.js",
+    "dataReaction": "node ./models/data/reactions.js"
   },
   "keywords": [],
   "author": "",
