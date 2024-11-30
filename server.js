@@ -1,7 +1,9 @@
 import express from "express"
 import "dotenv/config.js"
+import "./config/database.js"
 import cors from "cors"
 import morgan from "morgan";
+import indexRouter from "./router/index.js"
 
 
 const server = express()
@@ -24,4 +26,7 @@ server.use((req, res, next) => {
   });
 
 
-  server.listen(PORT, ready)
+server.listen(PORT, ready)
+
+
+server.use("/api", indexRouter)
