@@ -24,8 +24,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
-    "dev": "nodemon index.js",
+    "start": "nodemon server.js",
+    "dev": "nodemon server.js",
     "dataUser": "node ./models/data/users.js"
   },
   "keywords": [],
