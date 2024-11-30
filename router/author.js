@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { allAuthors } from "../controllers/author/read.js";
+import { allAuthors,getAuthorById,searchAuthorsByName } from "../controllers/author/read.js";
 
 
 
@@ -9,6 +9,7 @@ const router = Router();
 
 
 router.get("/all", allAuthors)
+router.get('/:id',getAuthorById)
 
 
 

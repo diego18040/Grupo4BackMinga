@@ -1,13 +1,20 @@
 import { Router } from "express";
-import { allUsers } from "../controllers/user/read.js";
+import { allUsers,userById } from "../controllers/user/read.js";
+import { register } from "../controllers/user/resgister.js";
+import  update  from "../controllers/user/update.js";
+import { deleteOne } from "../controllers/user/delete.js";
 
 
-const router = Router();
+const routerUsers = Router();
 
-router.get("/all", allUsers)
+routerUsers.get("/all", allUsers)
+routerUsers.get('/:id',userById)
+routerUsers.post("/register", register)
+routerUsers.put("/:id", update)
+routerUsers.delete("/deleteOne/:id", deleteOne)
 
 
 
 
 
-export default router
+export default routerUsers
