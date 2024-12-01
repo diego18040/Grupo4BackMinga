@@ -1,4 +1,3 @@
-import { number } from "joi";
 import { Schema, model } from "mongoose";
 
 const reactionSchema = new Schema({
@@ -18,7 +17,7 @@ const reactionSchema = new Schema({
         required: false
     },
     reaction: {
-        type: number,
+        type: Number,
         required: true,
         enum: [1,2,3,4,5]
     }
