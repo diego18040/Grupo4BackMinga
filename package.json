@@ -32,7 +32,7 @@
     "dataChapter": "node ./models/data/chapters.js",
     "dataComment": "node ./models/data/comments.js",
     "dataCompany": "node ./models/data/companies.js",
-    "dataManga": "node ./models/data/mangas.js",
+    "dataMangas": "node ./models/data/mangas.js",
     "dataReaction": "node ./models/data/reactions.js"
   },
   "keywords": [],
