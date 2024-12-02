@@ -5,6 +5,7 @@ import  update  from "../controllers/user/update.js";
 import { deleteOne } from "../controllers/user/delete.js";
 
 
+
 const routerUsers = Router();
 
 routerUsers.get("/all", allUsers)

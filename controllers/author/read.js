@@ -19,6 +19,7 @@ const allAuthors = async (req, res, next) => {
         next(error);
     }
 };
+
 const getAuthorById = async (req, res, next) => {
     try {
         const { id } = req.params;

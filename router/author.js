@@ -15,7 +15,7 @@ router.get("/all", allAuthors)
 router.get('/:id',getAuthorById)
 router.post("/create", create)
 router.put("/updatePhoto", updatePhoto)
-router.delete("/deleteOne", deleteOne)
+router.delete("/deleteOne(:id)", deleteOne)
 
 
 
