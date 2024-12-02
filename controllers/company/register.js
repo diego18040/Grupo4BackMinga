@@ -1,18 +1,16 @@
 import Company from "../../models/Company.js";
-import User from "../../models/User.js";  // Importamos el modelo de Usuario
+import User from "../../models/User.js"; 
 
 const createCompany = async (req, res, next) => {
     try {
         const { name, description, photo, website, user_id } = req.body;
-
-        // Primero, actualizamos el rol del usuario a 2 (rol de compañía)
         await User.findByIdAndUpdate(
             user_id,
             { role: 2 },
-            { new: true }  // Esto hace que devuelva el documento actualizado
+            { new: true }  // hace que devuelva el documento actualizado
         );
 
-        // Luego creamos la compañía
+        // creamos la compañía
         const companyData = {
             name,
             description,
