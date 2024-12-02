@@ -36,7 +36,7 @@ const getCompanyById = async (req, res, next) => {
 
 const searchCompaniesByName = async (req, res, next) => {
     try {
-        const { name } = req.query;
+        const { name } = req.params;
         const companies = await Company.find({
             name: { $regex: name, $options: "i" }
         }).populate('user_id');
