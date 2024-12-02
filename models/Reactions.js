@@ -16,10 +16,10 @@ const reactionSchema = new Schema({
         ref: 'Company',
         required: false
     },
-    reaccion: {
-        type: String,
+    reaction: {
+        type: Number,
         required: true,
-        enum: ['1,2,3,4,5']
+        enum: [1,2,3,4,5]
     }
 }, {
     timestamps: true

@@ -9,4 +9,4 @@ const bad_request_handler = (err, req, res, next) => {
     next(err);
 };
 
-export default bad_request_handler;git 
+export default bad_request_handler;
