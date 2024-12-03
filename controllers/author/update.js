@@ -25,4 +25,6 @@ const updatePhoto = async (req, res, next) => {
     }
 }
 
+
+
 export {updatePhoto}
