@@ -55,8 +55,32 @@ const MangasByCreatorId = async (req, res, next) => {
     }
 }
 
+const MangasByCategoryId = async (req, res, next) => {
+    try {
+        const id = req.params.id
+
+        const mangasCategory = await Manga.find({ category_id: id });
+
+        if (mangasCategory) {
+            return res.status(200).json({
+                response: mangasCategory
+            })
+        }
+
+
+        return res.status(404).json({
+            success: false,
+            message: "mangas not found verify the category id",
+        });
+        
+    } catch (error) {
+        next(error);
+    }
+}
 
 
 
 
-export { allMangas };
+
+
+export { allMangas, MangasByCreatorId, MangasByCategoryId };

@@ -2,12 +2,12 @@ import Manga from "../../models/Manga.js"
 
 let create = async (req,res,next) =>{
     try {
-        let comment = req.body
+        let manga = req.body
 
         
-        let newComment = await Comment.create(comment)
+        let newManga = await Manga.create(manga)
         return res.status(201).json({
-            response: newComment
+            response: newManga
         })
     } catch (error) {
         next(error)
