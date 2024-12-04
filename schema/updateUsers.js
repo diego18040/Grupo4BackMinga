@@ -21,6 +21,6 @@ const userUpdateSchema = joi.object({
             'string.max': 'Password cannot be longer than 30 characters',
         }),
 
-}).min(2); //campos a actualizar
+}).min(1); //campos a actualizar
 
 export default userUpdateSchema;

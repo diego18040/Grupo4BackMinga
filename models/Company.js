@@ -20,7 +20,8 @@ const companySchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: true
     },
     active: {
         type: Boolean,
