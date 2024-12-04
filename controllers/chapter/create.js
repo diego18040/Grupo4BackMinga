@@ -1,14 +1,14 @@
-import Comment from "../../models/Comments.js";
+import Chapter from "../../models/Chapter.js";
 
 
 let create = async (req,res,next) =>{
     try {
-        let comment = req.body
+        let chapter = req.body
 
         
-        let newComment = await Comment.create(comment)
+        let newChapter = await Chapter.create(chapter)
         return res.status(201).json({
-            response: newComment
+            response: newChapter
         })
     } catch (error) {
         next(error)
