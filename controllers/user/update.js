@@ -32,5 +32,4 @@ const update = async (req, res, next) => {
     }
 }
 
-
 export default update;
