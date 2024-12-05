@@ -43,9 +43,28 @@ const chaptersByMangaId = async (req, res, next) => {
     }
 }
 
+const chaptersById = async (req, res, next) => {
+    try {
+        const id = req.params.id
+        const chapter = await Chapter.find({ _id: id });
+        if (!chapter) {
+            return res.status(404).json({
+                success: false,
+                message: "chapter not found verify the chapter id",
+            });
+        }
+        res.status(200).json({
+            response: chapter
+        })
+    } catch (error) {
+        next(error);
+    }
+}
 
 
 
 
 
-export {allChapters, chaptersByMangaId}
+
+
+export {allChapters, chaptersByMangaId, chaptersById}

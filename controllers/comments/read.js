@@ -23,4 +23,31 @@ const allComments = async (req, res, next) => {
     }
 };
 
-export { allComments };
+
+const commentsByChapterId = async (req, res, next) => {
+    try {
+        const id = req.params.id
+
+        const commentsChapter = await Comment.find({ chapter_id: id });
+
+        if (commentsChapter) {
+            return res.status(200).json({
+                response: commentsChapter
+            })
+        }
+
+
+        return res.status(404).json({
+            success: false,
+            message: "comments not found verify the chapter id",
+        });
+        
+    } catch (error) {
+        next(error);
+    }
+}
+
+
+
+
+export { allComments, commentsByChapterId };

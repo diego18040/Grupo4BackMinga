@@ -4,7 +4,7 @@ const mangaSchema = new Schema({
     author_id: {
         type: Schema.Types.ObjectId,
         ref: 'Author',
-        required: true
+        required: false
     },
     company_id: {
         type: Schema.Types.ObjectId,
