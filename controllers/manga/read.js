@@ -1,27 +1,44 @@
 import Manga from "../../models/Manga.js";
 
 
+
 const allMangas = async (req, res, next) => {
     try {
-        let { title } = req.query;
+        const { title, category } = req.query;
         let query = {};
-
         if (title) {
-            query.title = { $regex: `${title}`, $options: "i" };
+            query.title = { $regex: `${title}`, $options: "i" }; 
         }
 
-        const mangas = await Manga.find(query)
-            .populate('author_id')
-            .populate('company_id')
-            .populate('category_id');
+        let mangas = await Manga.find(query)
+            .populate('author_id', '_id name')
+            .populate('company_id', '_id name')
+            .populate('category_id', '_id name');
+
+        if (category) {
+            mangas = mangas.filter((manga) =>
+                manga.category_id.name.toLowerCase().includes(category.toLowerCase())
+            );
+        }
+
+        if (mangas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No mangas found check the query parameters",
+            });
+        }
+
 
         res.status(200).json({
-            response: mangas
+            success: true,
+            response: mangas,
         });
+
     } catch (error) {
         next(error);
     }
 };
+
 
 
 const MangasByCreatorId = async (req, res, next) => {
