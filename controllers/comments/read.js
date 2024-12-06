@@ -28,7 +28,9 @@ const commentsByChapterId = async (req, res, next) => {
     try {
         const id = req.params.id
 
-        const commentsChapter = await Comment.find({ chapter_id: id });
+        const commentsChapter = await Comment.find({ chapter_id: id })
+            .populate('author_id', '_id name photo user_id')
+            .populate('company_id', '_id name photo user_id');
 
         if (commentsChapter) {
             return res.status(200).json({
