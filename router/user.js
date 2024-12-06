@@ -6,16 +6,19 @@ import { deleteOne } from "../controllers/user/delete.js";
 import passport from "../middleware/passport.js";
 import accountExists from "../middleware/accountExist.js";
 import createHash from "../middleware/createHash.js"
+import validator from "../middleware/validator.js"
+import userSignUpSchema from "../schema/createUsers.js"
+import userUpdateSchema from "../schema/updateUsers.js"
 
 
 
 const routerUsers = Router();
 
 routerUsers.get("/all",passport.authenticate('jwt',{session:false}),allUsers)
-routerUsers.get('/:id',userById)
-routerUsers.post("/register",accountExists,createHash, register)
-routerUsers.put("/:id", update)
-routerUsers.delete("/deleteOne/:id", deleteOne)
+routerUsers.get('/:id',passport.authenticate('jwt',{session:false}),userById)
+routerUsers.post("/register",validator(userSignUpSchema),accountExists,createHash, register)
+routerUsers.put("/:id",validator(userUpdateSchema),passport.authenticate('jwt',{session:false}),createHash, update)
+routerUsers.delete("/deleteOne/:id",passport.authenticate('jwt',{session:false}), deleteOne)
 
 
 
