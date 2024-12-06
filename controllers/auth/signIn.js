@@ -17,6 +17,7 @@ export default async(req,res,next) => {
             user: {
                 email: updatedUser.email,
                 photo: updatedUser.photo || '',
+                _id: updatedUser._id
             },
             token: req.token
         })
