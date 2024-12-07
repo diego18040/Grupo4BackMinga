@@ -3,6 +3,7 @@ import Category from "../../models/Category.js";
 import Author from "../../models/Author.js";
 import Company from "../../models/Company.js";
 import Reaction from "../../models/Reactions.js";
+import User from "../../models/User.js";
 
 
 
@@ -140,12 +141,16 @@ const FavoriteMangas = async (req, res, next) => {
         if (!id) {
             return res.status(400).json({
                 success: false,
-                message: "Company or author ID is required",
+                message: "User ID is required",
             });
         }
 
-        const author = await Author.findById(id);
-        const company = await Company.findById(id);
+        const user = await User.findById(id);
+
+
+
+        const author = await Author.find({ user_id: user._id });
+        const company = await Company.find({ user_id: user._id });
 
         if (!author && !company) {
             return res.status(404).json({
@@ -154,12 +159,22 @@ const FavoriteMangas = async (req, res, next) => {
             });
         }
 
-        let reactions;
-        if (author) {
-            reactions = await Reaction.find({ author_id: author._id });
-        } else if (company) {
-            reactions = await Reaction.find({ company_id: company._id });
+        console.log("esto es author", author);
+        
+        let author2 = author[0]
+        let company2 = company[0]
+
+        let reactions= [1,4]
+        if (author2) {
+            console.log("esto es reactions", reactions);
+            
+            reactions = await Reaction.find({ author_id: author2._id });
+        } else if (company2) {
+            reactions = await Reaction.find({ company_id: company2._id });
         }
+
+        console.log("esto es reactions", reactions);
+        
 
         if (reactions.length === 0) {
             return res.status(404).json({
