@@ -1,5 +1,7 @@
 import Author from "../../models/Author.js";
 import User from "../../models/User.js";
+import Reaction from "../../models/Reactions.js";
+import Comment from "../../models/Comments.js";
 
 let deleteOne = async (req, res, next) => {
   try {
@@ -19,6 +21,12 @@ let deleteOne = async (req, res, next) => {
     // Eliminar el autor
     await Author.findByIdAndDelete(id);
 
+    //eliminar las reactions
+    await Reaction.deleteMany({author_id: id})
+
+    //eliminar los comentarios
+    await Comment.deleteMany({author_id: id})
+  
     // Actualizar el rol del usuario
     const user = await User.findById(userId);
     if (user) {
