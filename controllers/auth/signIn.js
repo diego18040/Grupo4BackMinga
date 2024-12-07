@@ -7,9 +7,11 @@ export default async(req,res,next) => {
             {online: true},
             {
                 new: true,
-                select: 'email firstName lastName photo country online'
+                select: 'email firstName lastName photo country online role'
             }
         );
+        console.log(updatedUser);
+        
         console.log(`User ${updatedUser.email} signed in successfully`);
         return res.status(200).json({
             success: true,
@@ -17,6 +19,7 @@ export default async(req,res,next) => {
             user: {
                 email: updatedUser.email,
                 photo: updatedUser.photo || '',
+                role: updatedUser.role,
                 _id: updatedUser._id
             },
             token: req.token

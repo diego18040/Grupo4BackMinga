@@ -159,21 +159,19 @@ const FavoriteMangas = async (req, res, next) => {
             });
         }
 
-        console.log("esto es author", author);
         
         let author2 = author[0]
         let company2 = company[0]
 
         let reactions= [1,4]
         if (author2) {
-            console.log("esto es reactions", reactions);
             
             reactions = await Reaction.find({ author_id: author2._id });
         } else if (company2) {
             reactions = await Reaction.find({ company_id: company2._id });
         }
 
-        console.log("esto es reactions", reactions);
+
         
 
         if (reactions.length === 0) {
