@@ -10,7 +10,8 @@ export default async (req,res,next) => {
                 password: account.password,
                 name : account.name,
                 photo : account.photo,
-                country : account.country,
+                role : account.role,
+                _id : account._id
             }
             return next()
         }

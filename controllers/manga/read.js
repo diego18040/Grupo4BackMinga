@@ -58,29 +58,37 @@ const allMangas = async (req, res, next) => {
 
 const MangasByCreatorId = async (req, res, next) => {
     try {
-        const id = req.params.id
+        let id = req.params.id
 
-        const mangasAuthor = await Manga.find({ author_id: id });
-
-        if (mangasAuthor) {
-            return res.status(200).json({
-                response: mangasAuthor
-            })
+        let user = await User.findOne({ _id: id });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
         }
 
-        const mangasCompany = await Manga.find({ company_id: id });
+        let author = await Author.findOne({ user_id: id });
+        let company = await Company.findOne({ user_id: id });
 
-        if (mangasCompany) {
-            return res.status(200).json({
-                response: mangasCompany
-            })
+        let mangas
+
+        if (author) {  
+            mangas = await Manga.find({ author_id: author._id });
+        } else if (company) {
+
+            mangas = await Manga.find({ company_id: company._id });
+        }   
+        if (mangas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No mangas found",
+            });
         }
 
-
-        return res.status(404).json({
-            success: false,
-            message: "mangas not found verify id of author or company",
-        });
+        return res.status(200).json({
+            response: mangas
+        })  
         
     } catch (error) {
         next(error);
