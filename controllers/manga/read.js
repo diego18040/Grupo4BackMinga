@@ -189,6 +189,13 @@ const FavoriteMangas = async (req, res, next) => {
             })
         );
 
+        if (mangas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "this author or company does not have favorite mangas",
+            });
+        }
+
         
 
         return res.status(200).json({

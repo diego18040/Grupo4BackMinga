@@ -19,7 +19,7 @@ router.get("/all", passport.authenticate('jwt', { session: false }), allCompanie
 router.get("/search/:name", passport.authenticate('jwt', { session: false }), searchCompaniesByName)
 router.get('/:id', passport.authenticate('jwt', { session: false }), getCompanyById)
 router.post("/create",
-    validator(companySignUpSchema),passport.authenticate('jwt', { session: false }),existingAccounts,createCompany);
+    validator(companySignUpSchema),passport.authenticate('jwt', { session: false }),createCompany);
 router.put("/:id", validator(companyUpdateSchema), passport.authenticate('jwt', { session: false }), update)
 router.delete("/delete/:id", passport.authenticate('jwt', { session: false }), deleteCompany)
 
