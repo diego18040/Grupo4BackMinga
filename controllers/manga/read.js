@@ -74,10 +74,14 @@ const MangasByCreatorId = async (req, res, next) => {
         let mangas
 
         if (author) {  
-            mangas = await Manga.find({ author_id: author._id });
+            mangas = await Manga.find({ author_id: author._id })
+                .populate('category_id',)
+                .populate('author_id', '_id name')
         } else if (company) {
 
-            mangas = await Manga.find({ company_id: company._id });
+            mangas = await Manga.find({ company_id: company._id })
+                .populate('category_id', )
+                .populate('company_id', '_id name')
         }   
         if (mangas.length === 0) {
             return res.status(404).json({

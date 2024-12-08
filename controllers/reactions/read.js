@@ -3,6 +3,8 @@ import Reaction from "../../models/Reactions.js";
 
 const allReactions = async (req, res, next) => {
     try {
+        console.log("esto es req.user", req.user);
+        
         console.log("esto es req.token", req.token);
         
         const reactions = await Reaction.find()

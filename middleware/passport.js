@@ -12,7 +12,12 @@ export default passport.use(
 
             try {
                 let user = await User.findOne({email:jwt_payload.email})
-
+                
+                console.log("esto es jwt_payload", jwt_payload);
+                
+                user.company_id = jwt_payload.company_id
+                user.author_id = jwt_payload.author_id
+                
                 if (user) {
                     return done(null,user)
                 }else{
