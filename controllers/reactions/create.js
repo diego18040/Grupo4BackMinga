@@ -16,6 +16,15 @@ let create = async (req, res, next) => {
         // Buscar si el usuario es un autor o una compañía
         let author = await Author.findOne({ user_id: id }); // Agregué 'await'
         let company = await Company.findOne({ user_id: id }); // Agregué 'await'
+        
+        console.log("esto es id ", id);
+        console.log("esto es manga_id", manga_id);
+        
+        
+
+        console.log("esto es author", author);  
+
+        
 
         // Validar que al menos uno exista
         if (!author && !company) {
@@ -25,6 +34,8 @@ let create = async (req, res, next) => {
             });
         }
 
+
+
         // Buscar si ya existe una reacción asociada al manga
         const existingReaction = await Reaction.findOne({
             manga_id,
@@ -33,6 +44,9 @@ let create = async (req, res, next) => {
                 { company_id: company ? company._id : null },
             ],
         });
+
+        console.log(existingReaction);
+        
 
         // Si ya existe una reacción
         if (existingReaction) {
