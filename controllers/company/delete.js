@@ -7,7 +7,6 @@ const deleteCompany = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        // Buscar la compañía por ID
         const company = await Company.findById(id);
 
         if (!company) {
@@ -27,6 +26,11 @@ const deleteCompany = async (req, res, next) => {
         await Reaction.deleteMany({ company_id: id });  
 
         await Comment.deleteMany({ company_id: id });  
+
+        // Eliminar las reactions
+        await Reaction.deleteMany({ company_id: id });
+
+        await Comment.deleteMany({ company_id: id });
 
         // Actualizar el rol del usuario
         const user = await User.findById(userId);

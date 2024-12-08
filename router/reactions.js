@@ -10,7 +10,7 @@ const router = Router();
 
 
 router.get("/all", allReactions)
-router.post("/create", create)
+router.post("/create/:id", create)
 router.put("/update", update)
 router.delete("/deleteOne/:id", deleteOne)
 
