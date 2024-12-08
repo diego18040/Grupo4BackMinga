@@ -7,7 +7,6 @@ const deleteCompany = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        // Buscar la compañía por ID
         const company = await Company.findById(id);
 
         if (!company) {
