@@ -1,4 +1,6 @@
 import Manga from "../../models/Manga.js";
+import Chapter from "../../models/Chapter.js";
+import Reaction from "../../models/Reactions.js";
 
 
 
@@ -13,6 +15,13 @@ let deleteOne = async (req, res, next) => {
           message: "Manga not found",
         });
       }
+
+
+      await Reaction.deleteMany({ manga_id: id });
+      const deletedChapters = await Chapter.deleteMany({ manga_id: id });     
+
+
+
       return res.status(200).json({
         success: true,
         message: "Manga successfully deleted",

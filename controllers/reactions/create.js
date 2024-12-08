@@ -14,8 +14,8 @@ let create = async (req, res, next) => {
         let { id } = req.params;
 
         // Buscar si el usuario es un autor o una compañía
-        let author = await Author.findOne({ user_id: id }); // Agregué 'await'
-        let company = await Company.findOne({ user_id: id }); // Agregué 'await'
+        let author = await Author.findOne({ user_id: id }); 
+        let company = await Company.findOne({ user_id: id }); 
         
         console.log("esto es id ", id);
         console.log("esto es manga_id", manga_id);
