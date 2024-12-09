@@ -11,7 +11,10 @@ export default async (req, res, next) => {
             });
         }
 
-        const userId = req.user._id;
+        console.log(req.user);
+        
+
+        const userId = req.body.user_id 
 
         // Verificar si ya tiene una compañía
         const existingCompany = await Company.findOne({ user_id: userId });

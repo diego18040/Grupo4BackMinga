@@ -11,7 +11,7 @@ const router = Router();
 
 
 router.get("/all", passport.authenticate("jwt", { session: false }), allReactions)
-router.post("/create/:id", passport.authenticate("jwt", { session: false }), create)
+router.post("/create", passport.authenticate("jwt", { session: false }), create)
 router.put("/update", passport.authenticate("jwt", { session: false }), update)
 router.delete("/deleteOne/:id", passport.authenticate("jwt", { session: false }), deleteOne)
 
