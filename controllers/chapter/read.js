@@ -29,10 +29,10 @@ const chaptersByMangaId = async (req, res, next) => {
     try {
         const id = req.params.id
         const chapters = await Chapter.find({ manga_id: id });
-        if (!chapters) {
+        if (chapters.length === 0) {
             return res.status(404).json({
                 success: false,
-                message: "chapter not found",
+                message: "chapters not found",
             });
         }
         res.status(200).json({

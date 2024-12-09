@@ -1,3 +1,8 @@
+
+import Company from "../models/Company.js";
+import Author from "../models/Author.js";
+
+
 export default (req, res, next) => {
     try {
         if (!req.user) {
@@ -7,6 +12,7 @@ export default (req, res, next) => {
 
             });
         }
+
         
      
         if (req.user.role == 0) {
@@ -16,8 +22,18 @@ export default (req, res, next) => {
             });
         }
 
+        let author = Author.findOne({ user_id: req.user._id });
+        let company = Company.findOne({ user_id: req.user._id });
 
-        return next();
+        if (author.active || company.active) {
+            return next();
+        }
+
+        return res.status(403).json({
+            success: false,
+            message: `seems like you were banned haha, contact the one in charge.`,
+        });
+        
     } catch (error) {
         next(error);
     }
