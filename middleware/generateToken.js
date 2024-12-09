@@ -16,9 +16,7 @@ export default async (req,res,next) => {
         let payload = {
             email: req.body.email || req.user.email,
             _id: user._id,
-            role: user.role,
-            author_id: author._id,
-            company_id: company._id
+            role: user.role
         };
     
         const token = jwt.sign(

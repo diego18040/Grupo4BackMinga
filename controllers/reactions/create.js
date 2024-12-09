@@ -11,7 +11,7 @@ import Company from "../../models/Company.js";
 let create = async (req, res, next) => {
     try {
         let { manga_id, reaction } = req.body;
-        let { id } = req.params;
+        let  id  = req.query.id;
 
         // Buscar si el usuario es un autor o una compañía
         let author = await Author.findOne({ user_id: id }); 
