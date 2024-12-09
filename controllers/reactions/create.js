@@ -13,7 +13,6 @@ let create = async (req, res, next) => {
         let { manga_id, reaction } = req.body;
         let  id  = req.query.id;
 
-        // Buscar si el usuario es un autor o una compañía
         let author = await Author.findOne({ user_id: id }); 
         let company = await Company.findOne({ user_id: id }); 
         

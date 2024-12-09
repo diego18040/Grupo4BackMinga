@@ -5,7 +5,6 @@ import Author from "../../models/Author.js";
 let create = async (req,res,next) =>{
     try {
         
-        console.log(req.user);
         let id = req.query.id
 
         let author = await Author.findOne({user_id: id})

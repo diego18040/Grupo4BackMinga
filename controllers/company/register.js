@@ -1,5 +1,6 @@
 import Company from "../../models/Company.js";
 import User from "../../models/User.js"; 
+import generateToken from "../../middleware/generateToken.js";
 
 const createCompany = async (req, res, next) => {
     try {
@@ -10,7 +11,7 @@ const createCompany = async (req, res, next) => {
             { new: true }  // hace que devuelva el documento actualizado
         );
 
-        // creamos la compañía
+        
         const companyData = {
             name,
             description,
@@ -21,7 +22,9 @@ const createCompany = async (req, res, next) => {
         };
 
         const company = await Company.create(companyData);
-
+        req.user.role = 2
+        console.log("esto es EL NUEVO req.user", req.user);
+        const token = await generateToken(req, res, next, true);
         res.status(201).json({
             success: true,
             message: "Company successfully registered and user role updated",

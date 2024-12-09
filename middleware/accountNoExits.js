@@ -1,13 +1,12 @@
 import User from "../models/User.js";
-import Author from "../models/Author.js";
-import Company from "../models/Company.js";
+
 
 export default async (req,res,next) => {
     try {
         let account = await User.findOne({email: req.body.email})
 
         if (account) {
-            //guardamos la informacion del usuario en la variable req.user
+     
             req.user ={
                 email : account.email,
                 password: account.password,
@@ -15,8 +14,6 @@ export default async (req,res,next) => {
                 photo : account.photo,
                 role : account.role,
                 _id : account._id,
-
-
             }
             return next()
         }
