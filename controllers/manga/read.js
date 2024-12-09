@@ -106,6 +106,7 @@ const MangasByCreatorId = async (req, res, next) => {
     }
 }
 
+
 const MangasByCategoryId = async (req, res, next) => {
     try {
         const id = req.params.id
