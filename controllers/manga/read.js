@@ -55,7 +55,6 @@ const allMangas = async (req, res, next) => {
     }
 };
 
-
 const MangasByCreatorId = async (req, res, next) => {
     try {
         let id = req.params.id;
