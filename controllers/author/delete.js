@@ -1,5 +1,8 @@
 import Author from "../../models/Author.js";
 import User from "../../models/User.js";
+import Comment from "../../models/Comments.js";
+import Reaction from "../../models/Reactions.js";
+import Manga from "../../models/Manga.js";
 
 let deleteOne = async (req, res, next) => {
   try {
@@ -13,13 +16,16 @@ let deleteOne = async (req, res, next) => {
       });
     }
 
-    //guardar id del usuario antes de eliminar
+
     const userId = author.user_id;
 
-    // Eliminar el autor
-    await Author.findByIdAndDelete(id);
 
-    // Actualizar el rol del usuario
+    await Author.findByIdAndDelete(id);
+    await Reaction.deleteMany({ author_id: id });
+    await Comment.deleteMany({ author_id: id });
+    await Manga.deleteMany({ author_id: id });
+
+ 
     const user = await User.findById(userId);
     if (user) {
       user.role = 0;

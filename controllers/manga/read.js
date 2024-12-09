@@ -3,6 +3,7 @@ import Category from "../../models/Category.js";
 import Author from "../../models/Author.js";
 import Company from "../../models/Company.js";
 import Reaction from "../../models/Reactions.js";
+import User from "../../models/User.js";
 
 
 
@@ -54,37 +55,56 @@ const allMangas = async (req, res, next) => {
     }
 };
 
-
 const MangasByCreatorId = async (req, res, next) => {
     try {
-        const id = req.params.id
+        let id = req.params.id;
+        let genres = req.query.genres ? req.query.genres.split(',') : [];
 
-        const mangasAuthor = await Manga.find({ author_id: id });
-
-        if (mangasAuthor) {
-            return res.status(200).json({
-                response: mangasAuthor
-            })
+        let user = await User.findOne({ _id: id });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
         }
 
-        const mangasCompany = await Manga.find({ company_id: id });
+        let author = await Author.findOne({ user_id: id });
+        let company = await Company.findOne({ user_id: id });
 
-        if (mangasCompany) {
-            return res.status(200).json({
-                response: mangasCompany
-            })
+        let filter = {};
+        if (genres.length > 0) {
+            filter.category_id = { $in: await Category.find({ name: { $in: genres } }).select('_id') };
         }
 
+        let mangas;
+        if (author) {
+            filter.author_id = author._id;
+            mangas = await Manga.find(filter)
+                .populate('category_id')
+                .populate('author_id', '_id name');
+        } else if (company) {
+            filter.company_id = company._id;
+            mangas = await Manga.find(filter)
+                .populate('category_id')
+                .populate('company_id', '_id name');
+        }
 
-        return res.status(404).json({
-            success: false,
-            message: "mangas not found verify id of author or company",
+        if (mangas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No mangas found",
+            });
+        }
+
+        return res.status(200).json({
+            response: mangas
         });
-        
+
     } catch (error) {
         next(error);
     }
 }
+
 
 const MangasByCategoryId = async (req, res, next) => {
     try {
@@ -140,12 +160,16 @@ const FavoriteMangas = async (req, res, next) => {
         if (!id) {
             return res.status(400).json({
                 success: false,
-                message: "Company or author ID is required",
+                message: "User ID is required",
             });
         }
 
-        const author = await Author.findById(id);
-        const company = await Company.findById(id);
+        const user = await User.findById(id);
+
+
+
+        const author = await Author.find({ user_id: user._id });
+        const company = await Company.find({ user_id: user._id });
 
         if (!author && !company) {
             return res.status(404).json({
@@ -154,12 +178,20 @@ const FavoriteMangas = async (req, res, next) => {
             });
         }
 
-        let reactions;
-        if (author) {
-            reactions = await Reaction.find({ author_id: author._id });
-        } else if (company) {
-            reactions = await Reaction.find({ company_id: company._id });
+        
+        let author2 = author[0]
+        let company2 = company[0]
+
+        let reactions= [1,4]
+        if (author2) {
+            
+            reactions = await Reaction.find({ author_id: author2._id });
+        } else if (company2) {
+            reactions = await Reaction.find({ company_id: company2._id });
         }
+
+
+        
 
         if (reactions.length === 0) {
             return res.status(404).json({
@@ -175,6 +207,13 @@ const FavoriteMangas = async (req, res, next) => {
                 return Manga.findById(reaction.manga_id);
             })
         );
+
+        if (mangas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "this author or company does not have favorite mangas",
+            });
+        }
 
         
 

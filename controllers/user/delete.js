@@ -1,4 +1,9 @@
 import User from "../../models/User.js"
+import Comment from "../../models/Comments.js"
+import Reaction from "../../models/Reactions.js"
+import Manga from "../../models/Manga.js"
+import Author from "../../models/Author.js"
+import Company from "../../models/Company.js"
 
 let deleteOne = async (req, res, next) => {
   try {

@@ -3,15 +3,16 @@ import Comment from "../../models/Comments.js";
 
 const updateMessage = async (req, res, next) => {
     try {
+        let id = req.params.id
         let comment = req.body
-        const commentExists = await Comment.findById(comment._id)
+        const commentExists = await Comment.findById(id)
         if (!commentExists) {
             return res.status(404).json({
                 message: "Comment not found. Please try another ID."
             });
         }
         let upd = await Comment.updateOne(
-            { _id: comment._id },
+            { _id: id },
             { message: comment.message }
         )
 

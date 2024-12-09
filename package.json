@@ -35,7 +35,8 @@
     "dataComment": "node ./models/data/comments.js",
     "dataCompany": "node ./models/data/companies.js",
     "dataMangas": "node ./models/data/mangas.js",
-    "dataReaction": "node ./models/data/reactions.js"
+    "dataReaction": "node ./models/data/reactions.js",
+    "dataMangas2": "node ./models/data/data.js"
   },
   "keywords": [],
   "author": "",

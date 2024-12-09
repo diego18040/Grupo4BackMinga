@@ -3,7 +3,7 @@ import Reaction from "../../models/Reactions.js";
 
 const allReactions = async (req, res, next) => {
     try {
-
+        console.log("esto es req.user", req.user);
         const reactions = await Reaction.find()
             .populate('author_id')
             .populate('company_id')
@@ -12,6 +12,7 @@ const allReactions = async (req, res, next) => {
         res.status(200).json({
             response: reactions
         });
+
     } catch (error) {
         next(error);
     }

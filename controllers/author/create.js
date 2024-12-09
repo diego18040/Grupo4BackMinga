@@ -1,23 +1,35 @@
 import Author from "../../models/Author.js"
 import User from "../../models/User.js"
+import generateToken from "../../middleware/generateToken.js";
 
 
 
 const create = async (req, res, next) => {
     try {
         const author = req.body;
-        const newAuthor = await Author.create(author);
-        const user = await User.findById(newAuthor.user_id);
+      
+        const user = await User.findById(author.user_id);
         if (!user) {
             return res.status(404).json({
                 success: false,
                 message: "User not found"
             });
         }
-        user.role = 1;
-        await user.save();
+    
+        const newAuthor = await Author.create(author);
+        await User.findByIdAndUpdate(
+            author.user_id,
+            { role: 1 },
+            { new: true }  // hace que devuelva el documento actualizado
+        );
+        req.user.role = 1
+        console.log("esto es EL NUEVO req.user", req.user);
+        const token = await generateToken(req, res, next, true);
         res.status(201).json({
-            response: newAuthor
+            response: newAuthor,
+            token: token,
+            user: req.user
+
         })
     }
     catch (error) {
