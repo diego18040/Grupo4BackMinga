@@ -28,8 +28,8 @@ const updatePhoto = async (req, res, next) => {
 
 const update = async (req, res, next) => {
     try {
-
-        const { id, ...dataToUpdate } = req.body;
+        let id = req.params.id
+        const { ...dataToUpdate } = req.body;
 
         if (!id) {
             return res.status(400).json({

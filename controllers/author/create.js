@@ -1,5 +1,6 @@
 import Author from "../../models/Author.js"
 import User from "../../models/User.js"
+import generateToken from "../../middleware/generateToken.js";
 
 
 
@@ -21,9 +22,14 @@ const create = async (req, res, next) => {
             { role: 1 },
             { new: true }  // hace que devuelva el documento actualizado
         );
-
+        req.user.role = 1
+        console.log("esto es EL NUEVO req.user", req.user);
+        const token = await generateToken(req, res, next, true);
         res.status(201).json({
-            response: newAuthor
+            response: newAuthor,
+            token: token,
+            user: req.user
+
         })
     }
     catch (error) {

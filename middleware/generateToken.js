@@ -4,7 +4,7 @@ import Company from '../models/Company.js'
 
 
 
-export default async (req,res,next) => {
+export default async (req,res,next, returnToken = false) => {
 
     try {
         
@@ -24,6 +24,11 @@ export default async (req,res,next) => {
             process.env.SECRET,
             {expiresIn: 60*60*24}
         )
+
+        if (returnToken) {
+            return token
+        }
+
         req.token = token
         return next()
     } catch (error) {
