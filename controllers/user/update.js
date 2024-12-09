@@ -2,12 +2,18 @@ import User from "../../models/User.js"
 
 const update = async (req, res, next) => {
     try {
-        // Extraemos el id y los datos a actualizar del body
-        let { user, ...dataToUpdate } = req.body;  // user es el ID, el resto son los datos a actualizar
+        let id = req.params.id
+        let {  ...dataToUpdate } = req.body;  // user es el ID, el resto son los datos a actualizar
+
+        console.log("esto es dataToUpdate", dataToUpdate);
+        console.log("esto es id", id);
+        
+
+        
 
         let updatedUser = await User.findByIdAndUpdate(
-            user,  // usamos el id que viene en el body
-            dataToUpdate,  // resto de datos a actualizar
+            id,  // usamos el id que viene en el body
+            dataToUpdate,  
             {
                 new: true,
                 runValidators: true

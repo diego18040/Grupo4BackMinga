@@ -58,34 +58,54 @@ const allMangas = async (req, res, next) => {
 
 const MangasByCreatorId = async (req, res, next) => {
     try {
-        const id = req.params.id
+        let id = req.params.id;
+        let genres = req.query.genres ? req.query.genres.split(',') : [];
 
-        const mangasAuthor = await Manga.find({ author_id: id });
-
-        if (mangasAuthor) {
-            return res.status(200).json({
-                response: mangasAuthor
-            })
+        let user = await User.findOne({ _id: id });
+        if (!user) {
+            return res.status(404).json({
+                success: false,
+                message: "User not found",
+            });
         }
 
-        const mangasCompany = await Manga.find({ company_id: id });
+        let author = await Author.findOne({ user_id: id });
+        let company = await Company.findOne({ user_id: id });
 
-        if (mangasCompany) {
-            return res.status(200).json({
-                response: mangasCompany
-            })
+        let filter = {};
+        if (genres.length > 0) {
+            filter.category_id = { $in: await Category.find({ name: { $in: genres } }).select('_id') };
         }
 
+        let mangas;
+        if (author) {
+            filter.author_id = author._id;
+            mangas = await Manga.find(filter)
+                .populate('category_id')
+                .populate('author_id', '_id name');
+        } else if (company) {
+            filter.company_id = company._id;
+            mangas = await Manga.find(filter)
+                .populate('category_id')
+                .populate('company_id', '_id name');
+        }
 
-        return res.status(404).json({
-            success: false,
-            message: "mangas not found verify id of author or company",
+        if (mangas.length === 0) {
+            return res.status(404).json({
+                success: false,
+                message: "No mangas found",
+            });
+        }
+
+        return res.status(200).json({
+            response: mangas
         });
-        
+
     } catch (error) {
         next(error);
     }
 }
+
 
 const MangasByCategoryId = async (req, res, next) => {
     try {

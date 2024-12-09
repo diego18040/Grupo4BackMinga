@@ -11,11 +11,11 @@ const authorSchema = new Schema({
     },
     city: {
         type: String,
-        required: true
+        required: false
     },
     country: {
         type: String,
-        required: true
+        required: false
     },
     date: {
         type: Date,
@@ -23,7 +23,7 @@ const authorSchema = new Schema({
     },
     photo: {
         type: String,
-        required: true
+        required: false
     },
     user_id: {
         type: Schema.Types.ObjectId,

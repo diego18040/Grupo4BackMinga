@@ -15,7 +15,7 @@ const companySchema = new Schema({
     },
     photo: {
         type: String,
-        required: true
+        required: false
     },
     user_id: {
         type: Schema.Types.ObjectId,
