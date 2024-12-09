@@ -16,7 +16,7 @@ router.get("/id/:id", passport.authenticate("jwt", { session: false }), MangasBy
 router.get("/favorite/:id", passport.authenticate("jwt", { session: false }), FavoriteMangas)
 router.put("/update/:id", passport.authenticate("jwt", { session: false }), update)
 router.delete("/deleteOne/:id", passport.authenticate("jwt", { session: false }), deleteOne)
-router.post("/create", passport.authenticate("jwt", { session: false }), create)
+router.post("/create/:id", passport.authenticate("jwt", { session: false }), create)
 
 
 
