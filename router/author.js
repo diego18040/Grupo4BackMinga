@@ -16,7 +16,7 @@ router.get("/all",passport.authenticate('jwt', { session: false }) , allAuthors)
 router.get('/:id', passport.authenticate('jwt', { session: false }),getAuthorById)
 router.post("/create", validator(authorSignUpSchema),passport.authenticate('jwt', { session: false }), existingAccounts  ,create)
 router.put("/updatePhoto", updatePhoto)
-router.put("/update",  validator(authorSignUpSchema),passport.authenticate('jwt', { session: false }) ,update)
+router.put("/update/:id",passport.authenticate('jwt', { session: false }) ,update)
 router.delete("/deleteOne/:id", deleteOne)
 
 

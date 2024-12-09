@@ -3,7 +3,7 @@ import Manga from "../../models/Manga.js";
 
 const update = async (req, res, next) => {
     try {
-        
+        let id = req.params.id
         let  Categoryname = req.query.category
         
         if (Categoryname) {
@@ -18,7 +18,7 @@ const update = async (req, res, next) => {
         }
 
 
-        const { id, ...dataToUpdate } = req.body; 
+        const {  ...dataToUpdate } = req.body; 
 
       
         const updatedManga = await Manga.findByIdAndUpdate(
