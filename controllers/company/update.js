@@ -11,7 +11,7 @@ const update = async (req,res,next)=>{
             new: true,
             runValidators: true
         }
-    ).populate("users");
+    ).populate("user_id");
 
     if(!company){
         return res.status(404).json({

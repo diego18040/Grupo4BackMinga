@@ -37,6 +37,11 @@ const authorUpdateSchema = joi.object({
         .messages({
             'string.uri': 'Please enter a valid URL for the photo',
         }),
-}).min(1); // Cambié a min(1) para permitir actualizar al menos un campo
+        active: joi.boolean() 
+        .optional()
+        .messages({
+            'boolean.base': 'Active must be a boolean value (true or false)'
+        })
+}).min(1); 
 
 export default authorUpdateSchema;
