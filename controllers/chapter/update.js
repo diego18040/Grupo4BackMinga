@@ -3,9 +3,9 @@ import Chapter from "../../models/Chapter.js";
 
 const update = async (req, res, next) => {
     try {
-        
+        let id = req.params.id
 
-        const { id, ...dataToUpdate } = req.body;
+        const { ...dataToUpdate } = req.body;
         const updatedChapter = await Chapter.findByIdAndUpdate(
             id,              
             dataToUpdate,      
