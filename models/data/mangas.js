@@ -5,7 +5,7 @@ import Chapter from "../Chapter.js"
 import Category from "../Category.js"
 import Author from "../Author.js"
 
-let mangasOld = [
+let mangas = [
     {
         title: 'Alice in Borderland',
         cover_photo: 'https://upload.wikimedia.org/wikipedia/en/5/5d/Alice_in_Borderland_cover.jpeg',
@@ -154,11 +154,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Bleach',
+        title: 'Bleach 2',
         cover_photo: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2013/07/236154-pausa-5-semanas-bleach-antes-pelea-final.jpg?tf=3840x',
         description: 'It follows the adventures of a teenager Ichigo Kurosaki, who obtains the powers of a Soul Reaper—a death personification similar to a Grim Reaper—from another Soul Reaper, Rukia Kuchiki.',
         category_id: 'shonen',
-        author_id: '674a456bbbe8747d4e262188',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'Death & Strawberry',
@@ -203,11 +203,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Another',
+        title: 'Another 2',
         cover_photo: 'https://m.media-amazon.com/images/S/pv-target-images/bc1646ce977003f294596d7522990592f966db04cc7496548bd0655b1006abea.jpg',
         description: 'This story revolves around a curse that affects class 3-3 of Yomiyama High School. It all begins when the protagonist, Kōichi Sakakibara, moves to this school and meets Mei Misaki, a girl who is ignored by her classmates due to a supposed curse that weighs on her. As Kōichi becomes more involved in the mystery surrounding class 3-3, he discovers that a student in the class died 26 years ago, and that every year someone in that class mysteriously dies since then. Kōichi and Mei try to uncover the truth behind the curse and end the wave of death while fighting the danger that lurks around them.',
         category_id: 'seinen',
-        author_id: '674a456bbbe8747d4e262188',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'I',
@@ -252,11 +252,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Gantz',
+        title: 'Gantz 2',
         cover_photo: 'https://imgmedia.larepublica.pe/640x371/larepublica/original/2022/10/06/633f4c06b6266c1a2b343066.webp',
         description: 'This is a sci-fi action story that follows a group of people who have been brought back to life by a mysterious sphere called Gantz and forced to participate in dangerous missions against strange and dangerous creatures. It all starts when the protagonist, Kei Kurono, is killed in an accident and is revived by Gantz along with other people who have recently died. As they fight to survive and complete Gantz´s missions, Kei and his companions discover that there is much more at stake than just their own lives.',
         category_id: 'seinen',
-        author_id: '674a456bbbe8747d4e262188',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'I',
@@ -301,11 +301,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Punpun',
+        title: 'Punpun 2',
         cover_photo: 'https://m.media-amazon.com/images/I/917IJDfk36L._AC_UF1000,1000_QL80_.jpg',
         description: 'This story follows the life of Onodera Punpun, a high school boy who struggles with emotional issues and family problems as he tries to grow up and find his place in the world. Punpun is not your typical elementary school student. Despite the fact that he feels the same impulses as his peers, he begins to discover girls and sex, the family situation is not the most stable and he must face it as best he can... and in principle, that is visualizing himself as an amorphous bird in a strange environment.',
         category_id: 'seinen',
-        author_id: '674a456bbbe8747d4e262188',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: '1',
@@ -350,11 +350,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Pokemon',
+        title: 'Pokemon 2',
         cover_photo: 'https://i.blogs.es/82d7ef/pokemon/1366_2000.jpeg',
         description: 'The Pokémon anime series is about a young trainer named Ash Ketchum and his journey to become a Pokémon Master',
         category_id: 'shonen',
-        author_id: '674a456bbbe8747d4e262189',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'Red',
@@ -415,11 +415,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Citrus',
+        title: 'Citrus 2',
         cover_photo: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/4dc2f475f4c1f9e66515956eae4eba69.jpg',
         description: 'Citrus is a 2018 TV mini-series about a fashionable girl named Yuzu whose life takes a turn for the sour when she meets the beautiful but stern Mei',
         category_id: 'shojo',
-        author_id: '674a456bbbe8747d4e262189',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'Chapter 1',
@@ -472,11 +472,11 @@ let mangasOld = [
             }
         ]
     },{
-        title: 'Ao Haru Ride',
+        title: 'Ao Haru Ride 2',
         cover_photo: 'https://imgsrv.crunchyroll.com/cdn-cgi/image/fit=contain,format=auto,quality=85,width=480,height=720/catalog/crunchyroll/509fe806cb6a2984a44886f8d9084959.jpg',
         description: 'Ao Haru Ride is a manga series and anime adaptation about a high school girl who reconnects with her junior high crush after he moved away due to family issues',
         category_id: 'shojo',
-        author_id: '674a456bbbe8747d4e262189',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: '001',
@@ -514,13 +514,13 @@ let mangasOld = [
         ]
     }
 ]
-let mangas = [
+let mangas2 = [
 {
         title: 'Shingeki no Kyojin RETOLD',
         cover_photo: 'https://media.tycsports.com/files/2022/01/09/378902/shingeki-no-kyojin_862x485_wmk.jpg',
         description: '100 years ago Titans appeared on earth. Soon the civilization was at the point of collapse because of these, the humans then built three giant walls to defend themselves. With the walls they were at peace but, after 100 years, the giants broke down the walls.',
         category_id: 'shonen',
-        author_id: '674fb9ca032b3adf1eb7e52f',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'Titans attack',
@@ -565,7 +565,7 @@ let mangas = [
         cover_photo: 'https://casacolombianadelcomic.com/gestion/uploads/product/211/thepromisedneverland01.jpg',
         description: 'Emma, Norman and Ray are three orphans who live happily in the idyllic Grace Field House orphanage, waiting for the moment when they will be assigned a foster family. Everything changes when they accidentally discover the horrifying reality of their existence, so they decide to rebel and fight to the last consequences in a dark and terrifying adventure. But his time is running out...',
         category_id: 'shonen',
-        author_id: '674fb9ca032b3adf1eb7e52f',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'Grace Field Home',
@@ -614,7 +614,7 @@ let mangas = [
         cover_photo: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2013/07/236154-pausa-5-semanas-bleach-antes-pelea-final.jpg?tf=3840x',
         description: 'It follows the adventures of a teenager Ichigo Kurosaki, who obtains the powers of a Soul Reaper—a death personification similar to a Grim Reaper—from another Soul Reaper, Rukia Kuchiki.',
         category_id: 'shonen',
-        author_id: '674fb9ca032b3adf1eb7e52f',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'Death & Strawberry',
@@ -663,7 +663,7 @@ let mangas = [
         cover_photo: 'https://imgmedia.larepublica.pe/640x371/larepublica/original/2022/10/06/633f4c06b6266c1a2b343066.webp',
         description: 'This is a sci-fi action story that follows a group of people who have been brought back to life by a mysterious sphere called Gantz and forced to participate in dangerous missions against strange and dangerous creatures. It all starts when the protagonist, Kei Kurono, is killed in an accident and is revived by Gantz along with other people who have recently died. As they fight to survive and complete Gantz´s missions, Kei and his companions discover that there is much more at stake than just their own lives.',
         category_id: 'seinen',
-        author_id: '674fb9ca032b3adf1eb7e52f',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: 'I',
@@ -712,7 +712,7 @@ let mangas = [
         cover_photo: 'https://m.media-amazon.com/images/I/917IJDfk36L._AC_UF1000,1000_QL80_.jpg',
         description: 'This story follows the life of Onodera Punpun, a high school boy who struggles with emotional issues and family problems as he tries to grow up and find his place in the world. Punpun is not your typical elementary school student. Despite the fact that he feels the same impulses as his peers, he begins to discover girls and sex, the family situation is not the most stable and he must face it as best he can... and in principle, that is visualizing himself as an amorphous bird in a strange environment.',
         category_id: 'seinen',
-        author_id: '674fb9ca032b3adf1eb7e52f',
+        author_id: '6756317b207112f759e24f71',
         chapters: [
             {
                 title: '1',
