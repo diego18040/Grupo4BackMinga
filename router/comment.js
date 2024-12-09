@@ -10,7 +10,7 @@ const router = Router();
 
 router.get("/all", passport.authenticate("jwt", { session: false }), allComments)
 router.get("/chapter/:id", passport.authenticate("jwt", { session: false }), commentsByChapterId)
-router.put("/updateMessage", passport.authenticate("jwt", { session: false }), updateMessage)
+router.put("/updateMessage/:id", passport.authenticate("jwt", { session: false }), updateMessage)
 router.delete("/deleteOne/:id", passport.authenticate("jwt", { session: false }), deleteOne)
 router.post("/create", passport.authenticate("jwt", { session: false }), create)
 

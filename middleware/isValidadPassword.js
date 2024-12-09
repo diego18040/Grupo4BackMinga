@@ -2,7 +2,8 @@ import bcryptjs from 'bcryptjs'
 
 //hasheamos la contraseña
 export default (req,res,next) => {
-    //guardamos la contraseña en la variable req.body.password
+    console.log("esto es req.body", req.body);
+    
     let passwordBody = req.body.password
     //guardamos la contraseña en la variable req.user.password
     let passwordDB = req.user.password

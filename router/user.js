@@ -21,6 +21,7 @@ routerUsers.post("/register", validator(userSignUpSchema), accountExists, create
 routerUsers.put("/:id", validator(userUpdateSchema), passport.authenticate('jwt', { session: false }), createHash, update)
 routerUsers.delete("/deleteOne/:id", passport.authenticate('jwt', { session: false }), deleteOne)
 routerUsers.get('/validatetoken', passport.authenticate('jwt', { session: false }), userByIdToken);
+routerUsers.put("/update/:id",passport.authenticate('jwt',{session:false}), update)
 
 
 
