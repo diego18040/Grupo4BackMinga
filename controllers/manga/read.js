@@ -58,7 +58,8 @@ const allMangas = async (req, res, next) => {
 
 const MangasByCreatorId = async (req, res, next) => {
     try {
-        let id = req.params.id
+        let id = req.params.id;
+        let genres = req.query.genres ? req.query.genres.split(',') : [];
 
         let user = await User.findOne({ _id: id });
         if (!user) {
@@ -71,18 +72,24 @@ const MangasByCreatorId = async (req, res, next) => {
         let author = await Author.findOne({ user_id: id });
         let company = await Company.findOne({ user_id: id });
 
-        let mangas
+        let filter = {};
+        if (genres.length > 0) {
+            filter.category_id = { $in: await Category.find({ name: { $in: genres } }).select('_id') };
+        }
 
-        if (author) {  
-            mangas = await Manga.find({ author_id: author._id })
-                .populate('category_id',)
-                .populate('author_id', '_id name')
+        let mangas;
+        if (author) {
+            filter.author_id = author._id;
+            mangas = await Manga.find(filter)
+                .populate('category_id')
+                .populate('author_id', '_id name');
         } else if (company) {
+            filter.company_id = company._id;
+            mangas = await Manga.find(filter)
+                .populate('category_id')
+                .populate('company_id', '_id name');
+        }
 
-            mangas = await Manga.find({ company_id: company._id })
-                .populate('category_id', )
-                .populate('company_id', '_id name')
-        }   
         if (mangas.length === 0) {
             return res.status(404).json({
                 success: false,
@@ -92,8 +99,8 @@ const MangasByCreatorId = async (req, res, next) => {
 
         return res.status(200).json({
             response: mangas
-        })  
-        
+        });
+
     } catch (error) {
         next(error);
     }
