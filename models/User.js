@@ -3,7 +3,7 @@ import { Schema, model } from "mongoose";
 const userSchema = new Schema({
     email: {
         type: String,
-        required: false,
+        required: true,
         unique: true
     },
     password: {
@@ -26,6 +26,6 @@ const userSchema = new Schema({
     timestamps: true
 });
 
-const User = model("User", userSchema);
+const User = model('User', userSchema);
 
 export default User;

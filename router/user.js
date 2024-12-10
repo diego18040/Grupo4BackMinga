@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { allUsers, userById, userByIdToken } from "../controllers/user/read.js";
+import { allUsers,userById,userByIdToken } from "../controllers/user/read.js";
 import { register } from "../controllers/user/resgister.js";
 import update from "../controllers/user/update.js";
 import { deleteOne } from "../controllers/user/delete.js";
