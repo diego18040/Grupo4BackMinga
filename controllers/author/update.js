@@ -31,10 +31,23 @@ const update = async (req, res, next) => {
         let id = req.params.id
         const { ...dataToUpdate } = req.body;
 
+        console.log("esto es id ", id);
+        
         if (!id) {
             return res.status(400).json({
                 success: false,
-                message: "Author id is required",
+                message: "user id is required",
+            });
+        }
+       
+        let author = await Author.findOne({ user_id: id });
+
+
+        id = author._id
+        if (!author) {
+            return res.status(404).json({
+                success: false,
+                message: "Author not found",
             });
         }
 
@@ -46,6 +59,10 @@ const update = async (req, res, next) => {
                 runValidators: true, 
             }
         );
+
+
+        console.log("esto es updatedAuthor", updatedAuthor);
+        
 
     
         if (!updatedAuthor) {
