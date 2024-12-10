@@ -27,6 +27,8 @@ export default (req, res, next) => {
 
         if (author.active || company.active) {
             return next();
+        }else if (req.user.role == 3) {
+            return next();
         }
 
         return res.status(403).json({
