@@ -13,7 +13,7 @@ const router = Router();
 router.get("/all", passport.authenticate("jwt", { session: false }), allChapters)
 router.get("/manga/:id", passport.authenticate("jwt", { session: false }), chaptersByMangaId)
 router.get("/id/:id", passport.authenticate("jwt", { session: false }), chaptersById)
-router.post("/create", passport.authenticate("jwt", { session: false }), create)
+router.post("/create/:mangaid", passport.authenticate("jwt", { session: false }), create)
 router.put("/update/:id", passport.authenticate("jwt", { session: false }), update)
 router.delete("/deleteOne/:id", passport.authenticate("jwt", { session: false }), deleteOne)
 

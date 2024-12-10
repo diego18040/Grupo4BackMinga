@@ -28,12 +28,13 @@ const createCompany = async (req, res, next) => {
         res.status(201).json({
             success: true,
             message: "Company successfully registered and user role updated",
-            data: company
+            data: company,
+            token: token,
+            user: req.user
+
         });
 
     } catch (error) {
-        // Si hay un error, podríamos querer revertir el cambio de rol
-        // en un entorno de producción
         next(error);
     }
 };
