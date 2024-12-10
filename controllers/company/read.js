@@ -24,7 +24,13 @@ const getCompanyById = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        let company = await Company.find({ user_id: id }).populate('user_id');
+        let company = await Company.findOne({ user_id: id }).populate('user_id');
+        if (!company) {
+            return res.status(404).json({
+                success: false,
+                message: "Company not found",
+            });
+        }
 
         res.status(200).json({
             response: company

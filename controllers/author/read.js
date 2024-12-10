@@ -24,7 +24,8 @@ const allAuthors = async (req, res, next) => {
 const getAuthorById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        let author = await Author.find({ user_id: id }).populate('user_id');
+        let author = await Author.findOne({ user_id: id }).populate('user_id');
+        
         if (!author) {
             return res.status(404).json({
                 success: false,
