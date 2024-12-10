@@ -1,5 +1,6 @@
 import Author from "../../models/Author.js";
 
+
 const allAuthors = async (req, res, next) => {
     try {
         let {name} = req.query
@@ -23,8 +24,13 @@ const allAuthors = async (req, res, next) => {
 const getAuthorById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const author = await Author.findById(id)
-            .populate('user_id');
+        let author = await Author.find({ user_id: id }).populate('user_id');
+        if (!author) {
+            return res.status(404).json({
+                success: false,
+                message: "Author not found",
+            });
+        }
 
         res.status(200).json({
             response: author

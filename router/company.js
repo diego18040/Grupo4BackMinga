@@ -15,12 +15,12 @@ const router = Router();
 
 
 
-router.get("/all", passport.authenticate('jwt', { session: false }), isRole0, allCompanies)
+router.get("/all", passport.authenticate('jwt', { session: false }), allCompanies)
 router.get("/search/:name", passport.authenticate('jwt', { session: false }), searchCompaniesByName)
-router.get('/:id', passport.authenticate('jwt', { session: false }), isRole0, getCompanyById)
+router.get('/:id', passport.authenticate('jwt', { session: false }),  getCompanyById)
 router.post("/create", validator(companySignUpSchema),passport.authenticate('jwt', { session: false }), existingAccounts ,createCompany);
-router.put("/:id", validator(companyUpdateSchema), passport.authenticate('jwt', { session: false }), isRole0, update)
-router.delete("/delete/:id", passport.authenticate('jwt', { session: false }), isRole0, deleteCompany)
+router.put("/:id", validator(companyUpdateSchema), passport.authenticate('jwt', { session: false }), update)
+router.delete("/delete/:id", passport.authenticate('jwt', { session: false }), deleteCompany)
 
 
 
