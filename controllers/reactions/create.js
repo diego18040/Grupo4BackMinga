@@ -25,7 +25,7 @@ let create = async (req, res, next) => {
 
         
 
-        // Validar que al menos uno exista
+        
         if (!author && !company) {
             return res.status(400).json({
                 success: false,
@@ -35,7 +35,7 @@ let create = async (req, res, next) => {
 
 
 
-        // Buscar si ya existe una reacción asociada al manga
+  
         const existingReaction = await Reaction.findOne({
             manga_id,
             $or: [
@@ -47,7 +47,6 @@ let create = async (req, res, next) => {
         console.log(existingReaction);
         
 
-        // Si ya existe una reacción
         if (existingReaction) {
             if (existingReaction.reaction === reaction) {
                 return res.status(200).json({
@@ -55,7 +54,7 @@ let create = async (req, res, next) => {
                     message: "You have already reacted like this",
                 });
             } else {
-                // Actualizar la reacción existente
+       
                 existingReaction.reaction = reaction;
                 await existingReaction.save();
 
@@ -67,12 +66,12 @@ let create = async (req, res, next) => {
             }
         }
 
-        // Crear una nueva reacción
+      
         const newReaction = await Reaction.create({
             manga_id,
             reaction,
-            author_id: author ? author._id : undefined, // Incluye solo si existe
-            company_id: company ? company._id : undefined, // Incluye solo si existe
+            author_id: author ? author._id : undefined, 
+            company_id: company ? company._id : undefined, 
         });
 
         return res.status(201).json({
