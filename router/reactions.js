@@ -11,10 +11,10 @@ const router = Router();
 
 
 
-router.get("/all", passport.authenticate("jwt", { session: false }), allReactions)
-router.post("/create", passport.authenticate("jwt", { session: false }),  create)
-router.put("/update", passport.authenticate("jwt", { session: false }),  update)
-router.delete("/deleteOne/:id", passport.authenticate("jwt", { session: false }),  deleteOne)
+router.get("/all", passport.authenticate("jwt", { session: false }),isRole0, allReactions)
+router.post("/create", passport.authenticate("jwt", { session: false }), isRole0, create)
+router.put("/update", passport.authenticate("jwt", { session: false }), isRole0, update)
+router.delete("/deleteOne/:id", passport.authenticate("jwt", { session: false }), isRole0, deleteOne)
 
 
 
