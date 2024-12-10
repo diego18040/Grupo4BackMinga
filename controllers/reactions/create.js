@@ -17,6 +17,8 @@ let create = async (req, res, next) => {
         let company = await Company.findOne({ user_id: id }); 
         
         console.log("esto es id ", id);
+        console.log("esto es company", company);    
+        
         console.log("esto es manga_id", manga_id);
         
         

@@ -7,7 +7,8 @@ import generateToken from "../../middleware/generateToken.js";
 const create = async (req, res, next) => {
     try {
         const author = req.body;
-      
+        console.log("esto es req.body", req.body);
+        
         const user = await User.findById(author.user_id);
         if (!user) {
             return res.status(404).json({
