@@ -1,31 +1,27 @@
 import Author from "../../models/Author.js";
 
-
+// Obtener todos los autores con filtro opcional por nombre
 const allAuthors = async (req, res, next) => {
     try {
-        let {name} = req.query
-        let query = {}
+        const { name } = req.query;
+        const query = name ? { name: { $regex: name, $options: "i" } } : {};
 
-        if (name) {
-            query.name = {$regex: `${name}`, $options: "i"}
-        }
-
-        const authors = await Author.find(query)
-            .populate('user_id'); 
+        const authors = await Author.find(query).populate("user_id");
 
         res.status(200).json({
             response: authors
-        })
+        });
     } catch (error) {
         next(error);
     }
 };
 
+// Obtener un autor por su ID de usuario
 const getAuthorById = async (req, res, next) => {
     try {
         const { id } = req.params;
-        let author = await Author.findOne({ user_id: id }).populate('user_id');
-        
+        const author = await Author.find({ user_id: id }).populate("user_id");
+
         if (!author) {
             return res.status(404).json({
                 success: false,
@@ -40,12 +36,14 @@ const getAuthorById = async (req, res, next) => {
         next(error);
     }
 };
+
+// Buscar autores por nombre
 const searchAuthorsByName = async (req, res, next) => {
     try {
         const { name } = req.query;
         const authors = await Author.find({
             name: { $regex: name, $options: "i" }
-        }).populate('user_id');
+        }).populate("user_id");
 
         res.status(200).json({
             response: authors
@@ -55,5 +53,5 @@ const searchAuthorsByName = async (req, res, next) => {
     }
 };
 
-
-export {allAuthors,getAuthorById,searchAuthorsByName}
+// Exportar las funciones
+export { allAuthors, getAuthorById, searchAuthorsByName };
