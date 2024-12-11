@@ -1,6 +1,7 @@
 import passport from "passport";
 import { Strategy as GoogleStrategy } from "passport-google-oauth20";
 import User from "../models/User.js";
+import bcryptjs from 'bcryptjs'
 
 export default passport.use(
     new GoogleStrategy(
@@ -17,22 +18,30 @@ export default passport.use(
                 
                 if (!user){
                     // Separar el nombre completo en nombre y apellido
-                    const nameParts = profile.displayName.split(' ');
-                    const firstName = nameParts[0];
-                    const lastName = nameParts.slice(1).join(' ');
+                    //const nameParts = profile.displayName.split(' ');
+                    //const firstName = nameParts[0];
+                    //const lastName = nameParts.slice(1).join(' ');
+
+                    let hashPassword = bcryptjs.hashSync(
+                        profile.id,
+                        10
+                    )
 
                     // Crear el usuario con los datos de Google
                     user = new User({
-                        firstName: firstName,
-                        lastName: lastName || "No especificado",
                         email: profile.emails[0].value,
-                        password: profile.id, 
                         photo: profile.photos[0].value || "https://default-photo-url.com",
-                        country: "No especificado", 
+                        password: hashPassword, 
+                        role: 0,
                         online: false
+
+
                     })
-                    await user.save()
-                }
+                    await user.save();
+                } else {
+                    user.online = true;
+                    await user.save();
+                  }
                 return done(null, user)
             } catch (error) {
                 console.error("Error en autenticación Google:", error);

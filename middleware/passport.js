@@ -12,9 +12,8 @@ export default passport.use(
 
             try {
                 let user = await User.findOne({email:jwt_payload.email})
-
                 if (user) {
-                    return done(null,user)
+                    return done(null, { ...user.toObject(), ...jwt_payload });
                 }else{
                     return done(null,null)
                 }    

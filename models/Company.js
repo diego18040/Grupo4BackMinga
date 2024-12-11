@@ -15,12 +15,13 @@ const companySchema = new Schema({
     },
     photo: {
         type: String,
-        required: true
+        required: false
     },
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
+        required: true,
+        unique: true
     },
     active: {
         type: Boolean,
