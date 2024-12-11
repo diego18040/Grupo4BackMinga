@@ -11,6 +11,7 @@ const createCompany = async (req, res, next) => {
             { new: true }  // hace que devuelva el documento actualizado
         );
 
+        console.log("esto es req.body", req.body);
         
         const companyData = {
             name,
